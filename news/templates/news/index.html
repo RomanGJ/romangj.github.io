@@ -1,0 +1,248 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Juli News</title>
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+
+    <!-- Responsive CSS -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Header Area Start -->
+    <header class="header-area">
+        <div class="top-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Breaking News Area -->
+                    <div class="col-12 col-md-6">
+                        <div class="breaking-news-area">
+                            <h5 class="breaking-news-title">Срочные новости</h5>
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul>
+                                    {% for el in break %}
+                                    <li><a href="#">{{ el.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stock News Area -->
+                    <div class="col-12 col-md-6">
+                        <div class="stock-news-area">
+                            <div id="stockNewsTicker" class="ticker">
+                                <div class="single-stock-report">
+                                    <div class="stock-values">
+                                        <span>Тенге/USD</span>
+                                    </div>
+                                    <div class="stock-index minus-index">
+                                        <h4>477</h4>
+                                    </div>
+                                </div>
+                                <div class="single-stock-report">
+                                    <div class="stock-values">
+                                        <span>Тенге/Рубль</span>
+                                    </div>
+                                    <div class="stock-index plus-index">
+                                        <h4>4.78</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Middle Header Area -->
+        <div class="middle-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Logo Area -->
+                    <div class="col-12 col-md-4">
+                        <div class="logo-area">
+                            <a href="{% url 'index' %}"><img class="logo" src="{% static 'img/core-img/logo.jpeg' %}" alt="logo"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Header Area -->
+        <div class="bottom-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <div class="main-menu">
+                            <nav class="navbar navbar-expand-lg">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#gazetteMenu" aria-controls="gazetteMenu" aria-expanded="false"
+                                    aria-label="Toggle navigation"><i class="fa fa-bars"></i> Menu</button>
+                                <div class="collapse navbar-collapse" id="gazetteMenu">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="#">Сегодня <span
+                                                    class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">Навигация</a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{% url 'index' %}">Главная</a>
+                                                <a class="dropdown-item" href="{% url 'contact' %}">Контакты</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- Welcome Blog Slide Area Start -->
+    <section class="welcome-blog-post-slide owl-carousel">
+        <!-- Single Blog Post -->
+        {% for el in carusel %}
+            <div class="single-blog-post-slide bg-img background-overlay-5"
+                style="background-image: url({{ el.image.url }});">
+                <!-- Single Blog Post Content -->
+                <div class="single-blog-post-content">
+                    <h3><a href="{% url 'news_state' el.id %}" class="font-pt">{{ el.name }}</a></h3>
+                    <div class="date">
+                        <a href="#">{{ el.date }}</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+    </section>
+
+
+    <!-- Main Content Area Start -->
+    <section class="main-content-wrapper section_padding_100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-9">
+                    <!-- Gazette Welcome Post -->
+                         <div class="gazette-welcome-post">
+
+                            <h2 class="font-pt">{{ main.name }}</h2>
+                            <p class="gazette-post-date">{{ main.date }}</p>
+                            <!-- Post Thumbnail -->
+                            <div class="blog-post-thumbnail my-5">
+                                <img src="{{ main.image.url }}" alt="post-thumb">
+                            </div>
+                            <!-- Post Excerpt -->
+                            <p>{{ main.description }}</p>
+                            <!-- Reading More -->
+                            <div
+                                class="post-continue-reading-share d-sm-flex align-items-center justify-content-between mt-30">
+                                <div class="post-continue-btn">
+                                    <a href="{% url 'news_state' main.id %}" class="font-pt">Подробнее... <i class="fa fa-chevron-right"
+                                            aria-hidden="true"></i></a>
+                                </div>
+                                <div class="post-share-btn-group">
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    <div class="gazette-todays-post section_padding_100_50">
+                        <div class="gazette-heading">
+                            <h4>Сегодня наиболее популярно</h4>
+                        </div>
+                        <!-- Single Today Post -->
+
+                        {% for el in today_most_popular %}
+                            <div class="gazette-single-todays-post d-md-flex align-items-start mb-50">
+                                <div class="todays-post-thumb">
+                                    <img src="{{ el.image.url }}" alt="">
+                                </div>
+                                <div class="todays-post-content">
+                                    <h3><a href="{% url 'news_state' el.id %}" class="font-pt mb-2">{{ el.name }} </a></h3>
+                                    <p class="gazette-post-date mb-2">{{ el.date }}</p>
+                                    <p>{{ el.description }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-3 col-md-6">
+                    <div class="sidebar-area">
+                        <!-- Breaking News Widget -->
+                        <div class="breaking-news-widget">
+                            <div class="widget-title">
+                                <h5>срочные новости</h5>
+                            </div>
+                            <!-- Single Breaking News Widget -->
+                            {% for el in break %}
+                                <div class="single-breaking-news-widget">
+                                    <img src="{{ el.image.url }}" alt="">
+                                    <div class="breakingnews-title">
+                                        <p>срочные новости</p>
+                                    </div>
+                                    <div class="breaking-news-heading gradient-background-overlay">
+                                        <a href="{% url 'news_state' el.id %}"><h5 class="font-pt">{{ el.name }}</h5></a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Don't Miss Widget -->
+                        <div class="donnot-miss-widget">
+                            <div class="widget-title">
+                                <h5>Не пропустите</h5>
+                            </div>
+                            <!-- Single Don't Miss Post -->
+                            {% for el in dm %}
+                                <div class="single-dont-miss-post d-flex mb-30">
+                                    <div class="dont-miss-post-thumb">
+                                        <img src="{{ el.image.url }}" alt="">
+                                    </div>
+                                    <div class="dont-miss-post-content">
+                                        <a href="{% url 'news_state' el.id %}" class="font-pt">{{ el.name }}</a>
+                                        <span>{{ el.date }}</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content Area End -->
+
+
+        <!-- jQuery (Necessary for All JavaScript Plugins) -->
+        <script src="static/js/jquery/jquery-2.2.4.min.js"></script>
+        <!-- Popper js -->
+        <script src="static/js/popper.min.js"></script>
+        <!-- Bootstrap js -->
+        <script src="static/js/bootstrap.min.js"></script>
+        <!-- Plugins js -->
+        <script src="static/js/plugins.js"></script>
+        <!-- Active js -->
+        <script src="static/js/active.js"></script>
+
+</body>
+
+</html>

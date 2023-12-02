@@ -1,0 +1,159 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Juli News</title>
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+
+    <!-- Responsive CSS -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Header Area Start -->
+    <header class="header-area">
+        <div class="top-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Breaking News Area -->
+                    <div class="col-12 col-md-6">
+                        <div class="breaking-news-area">
+                            <h5 class="breaking-news-title">Срочные новости</h5>
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul>
+                                    {% for el in break %}
+                                    <li><a href="#">{{ el.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stock News Area -->
+                    <div class="col-12 col-md-6">
+                        <div class="stock-news-area">
+                            <div id="stockNewsTicker" class="ticker">
+                                <div class="single-stock-report">
+                                    <div class="stock-values">
+                                        <span>Тенге/USD</span>
+                                    </div>
+                                    <div class="stock-index minus-index">
+                                        <h4>477</h4>
+                                    </div>
+                                </div>
+                                <div class="single-stock-report">
+                                    <div class="stock-values">
+                                        <span>Тенге/Рубль</span>
+                                    </div>
+                                    <div class="stock-index plus-index">
+                                        <h4>4.78</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Middle Header Area -->
+        <div class="middle-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Logo Area -->
+                    <div class="col-12 col-md-4">
+                        <div class="logo-area">
+                            <a href="{% url 'index' %}"><img src="{% static 'img/core-img/logo.jpeg' %}" alt="logo"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Header Area -->
+        <div class="bottom-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <div class="main-menu">
+                            <nav class="navbar navbar-expand-lg">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#gazetteMenu" aria-controls="gazetteMenu" aria-expanded="false"
+                                    aria-label="Toggle navigation"><i class="fa fa-bars"></i> Menu</button>
+                                <div class="collapse navbar-collapse" id="gazetteMenu">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'index' %}">Главная</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+
+
+
+    <!-- Main Content Area Start -->
+    <section class="main-content-wrapper section_padding_100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-9">
+                    <!-- Gazette Welcome Post -->
+                         <div class="gazette-welcome-post">
+
+                            <h2 class="font-pt">{{ state.name }}</h2>
+                            <p class="gazette-post-date">{{ state.date }}</p>
+                            <!-- Post Thumbnail -->
+                            <div class="blog-post-thumbnail my-5">
+                                <img src="{{ state.image.url }}" alt="post-thumb">
+                            </div>
+                            <!-- Post Excerpt -->
+                            <p>Текст описания статьи какой-то набор слов дэээм Текст описания статьи какой-то набор слов дэээм
+                            Текст описания статьи какой-то набор слов дэээм Текст описания статьи какой-то набор слов дэээм
+                            Текст описания статьи какой-то набор слов Юлька козюлька дэээм Текст описания статьи какой-то набор слов дэээм
+                            Текст описания статьи какой-то набор слов дэээм Текст описания статьи какой-то набор слов дэээм
+                            Текст описания статьи какой-то набор слов дэээм Текст описания Люблю тебя статьи какой-то набор слов дэээм</p>
+                            <!-- Reading More -->
+                            <div
+                                class="post-continue-reading-share d-sm-flex align-items-center justify-content-between mt-30">
+                                <div class="post-share-btn-group">
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Main Content Area End -->
+
+
+        <!-- jQuery (Necessary for All JavaScript Plugins) -->
+        <script src="static/js/jquery/jquery-2.2.4.min.js"></script>
+        <!-- Popper js -->
+        <script src="static/js/popper.min.js"></script>
+        <!-- Bootstrap js -->
+        <script src="static/js/bootstrap.min.js"></script>
+        <!-- Plugins js -->
+        <script src="static/js/plugins.js"></script>
+        <!-- Active js -->
+        <script src="static/js/active.js"></script>
+
+</body>
+
+</html>
